@@ -9,11 +9,9 @@ npm install rn-sms
 ## Usage
 
 ```js
-import { multiply } from "rn-sms";
-
+import { getAllSms } from "rn-sms";
 // ...
-
-const result = await multiply(3, 7);
+const messages = await getAllSms(100);
 ```
 
 ## Contributing
