@@ -4,6 +4,7 @@ import android.provider.Telephony
 import android.util.Log
 import com.facebook.react.bridge.*
 import com.google.gson.Gson
+import okhttp3.internal.toNonNegativeInt
 import java.util.*
 
 
@@ -50,7 +51,6 @@ class RnSmsModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaM
     var count = 0
 
     while (cursor.moveToNext() && count < max) {
-      Log.d("DEBUG", count.toString())
       val address = cursor.getString(addressIndex)
       val body = cursor.getString(bodyIndex)
       val type = cursor.getString(typeIndex)
@@ -60,7 +60,6 @@ class RnSmsModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaM
       val smsMap = mutableMapOf("sender" to address, "type" to type, "receivedTimestamp" to date,
         "serviceNumber" to serviceNumber, "threadId" to threadId, "body" to body
       )
-
       allSms.add(smsMap)
       count += 1
     }

@@ -10,7 +10,6 @@ export default function App() {
   const getValue = async () => {
     let p = await request(PERMISSIONS.ANDROID.READ_SMS);
     let allSms = await getAllSms();
-    console.log(JSON.stringify(allSms, null, 2));
   };
 
   useEffect(() => {
