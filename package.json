@@ -1,6 +1,6 @@
 {
   "name": "rn-sms",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "React native sms inbox reader",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
