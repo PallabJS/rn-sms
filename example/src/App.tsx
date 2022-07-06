@@ -1,31 +1,25 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
+import { request, Permission, PERMISSIONS } from 'react-native-permissions';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'rn-sms';
+import { View, Text } from 'react-native';
+
+import { getAllSms } from '../../src';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const [value, setValue] = React.useState(0);
+  const getValue = async () => {
+    let p = await request(PERMISSIONS.ANDROID.READ_SMS);
+    let allSms = await getAllSms();
+    console.log(JSON.stringify(allSms, null, 2));
+  };
 
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
+  useEffect(() => {
+    getValue();
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={{ fontSize: 30, color: 'black' }}>{value}</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
-});
